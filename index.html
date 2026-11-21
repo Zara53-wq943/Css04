@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verdant &amp; Roast — Botanical Specialty Coffee Roastery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ==========================================
+       1. CSS CUSTOM PROPERTIES & BASE STYLES
+       ========================================== */
+    :root {
+      --bg-cream: #FAF8F5;
+      --bg-sand: #F1ECE3;
+      --forest: #1E352F;
+      --forest-light: #2D4D44;
+      --terracotta: #C86D51;
+      --terracotta-dark: #A9543A;
+      --sage: #8FA89B;
+      --ink: #19221F;
+      --muted: #55625D;
+      --border: #DFD8CC;
+      --white: #FFFFFF;
+
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --shadow-sm: 0 4px 16px rgba(25, 34, 31, 0.06);
+      --shadow-md: 0 14px 34px rgba(25, 34, 31, 0.1);
+      --container: 1200px;
+      --transition: 0.25s ease;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-cream);
+      color: var(--ink);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font-family: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section {
+      padding: 5.5rem 0;
+    }
+
+    .section--sand {
+      background-color: var(--bg-sand);
+    }
+
+    .section--forest {
+      background-color: var(--forest);
+      color: var(--bg-cream);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.65rem;
+    }
+
+    .section--forest .eyebrow {
+      color: var(--sage);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+      margin-bottom: 1rem;
+    }
+
+    .section-header {
+      max-width: 640px;
+      margin-bottom: 3rem;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .section--forest .section-header p {
+      color: rgba(250, 248, 245, 0.8);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.6rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform var(--transition), background-color var(--transition), border-color var(--transition), color var(--transition);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn--primary {
+      background-color: var(--terracotta);
+      color: var(--white);
+    }
+
+    .btn--primary:hover {
+      background-color: var(--terracotta-dark);
+    }
+
+    .btn--outline {
+      border-color: var(--forest);
+      color: var(--forest);
+      background-color: transparent;
+    }
+
+    .btn--outline:hover {
+      background-color: var(--forest);
+      color: var(--white);
+    }
+
+    .btn--light-outline {
+      border-color: rgba(250, 248, 245, 0.45);
+      color: var(--bg-cream);
+      background-color: transparent;
+    }
+
+    .btn--light-outline:hover {
+      background-color: var(--bg-cream);
+      color: var(--forest);
+    }
+
+    /* ==========================================
+       2. SECTION 1: HEADER & NAVIGATION (FLEXBOX)
+       ========================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(250, 248, 245, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--forest);
+    }
+
+    .brand__badge {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background-color: var(--forest);
+      color: var(--bg-cream);
+      font-size: 1rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-menu a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--ink);
+      transition: color var(--transition);
+    }
+
+    .nav-menu a:hover {
+      color: var(--terracotta);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Pure CSS Mobile Drawer Toggle */
+    #nav-toggle {
+      display: none;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 42px;
+      height: 42px;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      padding: 0 9px;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background-color: var(--forest);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ==========================================
+       3. SECTION 2: HERO SECTION (CSS GRID)
+       ========================================== */
+    .hero {
+      padding: 4.5rem 0 5.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.85rem);
+      color: var(--forest);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .hero__lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 2rem;
+    }
+
+    .hero__cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      color: var(--forest);
+    }
+
+    .hero-stat span {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      background-color: var(--forest);
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+    }
+
+    .floating-note {
+      position: absolute;
+      bottom: -18px;
+      left: -18px;
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      box-shadow: var(--shadow-sm);
+      max-width: 250px;
+    }
+
+    .floating-note__tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--terracotta);
+    }
+
+    .floating-note p {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--forest);
+      margin-top: 0.25rem;
+    }
+
+    /* ==========================================
+       4. SECTION 3: CRAFT & PHILOSOPHY (CSS GRID)
+       ========================================== */
+    .craft-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .craft-media {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .craft-media img {
+      width: 100%;
+      height: 290px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .craft-media img:first-child {
+      transform: translateY(1.5rem);
+    }
+
+    .pillars-list {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 1.75rem;
+    }
+
+    .pillar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.15rem;
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    .pillar-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--bg-sand);
+      color: var(--forest);
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      font-size: 0.9rem;
+    }
+
+    .pillar-item h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+      color: var(--forest);
+    }
+
+    .pillar-item p {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    /* ==========================================
+       5. SECTION 4: SIGNATURE ROASTS (CSS GRID)
+       ========================================== */
+    .roasts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .roast-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .roast-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .roast-card__img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .roast-card__body {
+      padding: 1.4rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .roast-card__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .roast-card__price {
+      color: var(--terracotta);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .roast-card h3 {
+      font-size: 1.3rem;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+
+    .roast-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .notes-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .note-pill {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background-color: var(--bg-sand);
+      color: var(--forest);
+    }
+
+    /* ==========================================
+       6. SECTION 5: CAFE MENU (GRID + FLEXBOX)
+       ========================================== */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .menu-panel {
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+    }
+
+    .menu-panel h3 {
+      font-size: 1.45rem;
+      color: var(--forest);
+      padding-bottom: 0.85rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 2px solid var(--bg-sand);
+    }
+
+    .menu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .menu-item__title {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 0.98rem;
+    }
+
+    .menu-item__desc {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .menu-item__price {
+      font-weight: 700;
+      color: var(--terracotta);
+      white-space: nowrap;
+    }
+
+    /* ==========================================
+       7. SECTION 6: WORKSHOPS & CLUB (CSS GRID)
+       ========================================== */
+    .workshops-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 2.25rem;
+      align-items: start;
+    }
+
+    .event-stack {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .event-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      background-color: var(--forest-light);
+      border: 1px solid rgba(250, 248, 245, 0.14);
+      border-radius: var(--radius-md);
+      padding: 1.4rem;
+    }
+
+    .event-date {
+      flex-shrink: 0;
+      width: 72px;
+      text-align: center;
+      background-color: var(--bg-cream);
+      color: var(--forest);
+      border-radius: var(--radius-sm);
+      padding: 0.6rem 0.4rem;
+    }
+
+    .event-date span {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+
+    .event-date strong {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+    }
+
+    .event-info h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.3rem;
+      color: var(--white);
+    }
+
+    .event-info p {
+      font-size: 0.88rem;
+      color: rgba(250, 248, 245, 0.78);
+    }
+
+    .club-box {
+      background-color: var(--bg-cream);
+      color: var(--ink);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .club-box h3 {
+      font-size: 1.45rem;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+
+    .club-box > p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .club-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .club-form input,
+    .club-form select {
+      width: 100%;
+      padding: 0.8rem 0.95rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--white);
+      font-size: 0.92rem;
+    }
+
+    /* ==========================================
+       8. SECTION 7: TESTIMONIALS & RESERVATION
+       ========================================== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .quote-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.6rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .quote-card blockquote {
+      font-size: 0.95rem;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    .quote-author {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 0.85rem;
+    }
+
+    .quote-author strong {
+      color: var(--forest);
+      display: block;
+    }
+
+    .reserve-banner {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 2.5rem;
+      align-items: center;
+      background-color: var(--bg-sand);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+    }
+
+    .reserve-form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .reserve-form input,
+    .reserve-form select {
+      width: 100%;
+      padding: 0.82rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background-color: var(--white);
+      font-size: 0.92rem;
+    }
+
+    .reserve-form .full-span {
+      grid-column: 1 / -1;
+    }
+
+    /* ==========================================
+       9. FOOTER (CSS GRID)
+       ========================================== */
+    .site-footer {
+      background-color: #13221E;
+      color: rgba(250, 248, 245, 0.78);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      gap: 2.5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(250, 248, 245, 0.12);
+    }
+
+    .footer-brand {
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1.75rem;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================
+       10. RESPONSIVE MEDIA QUERIES
+       ========================================== */
+
+    /* Tablet View (<= 1024px) */
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .craft-grid,
+      .workshops-grid,
+      .reserve-banner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card img {
+        height: 380px;
+      }
+
+      .floating-note {
+        bottom: 16px;
+        left: 16px;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Mobile View (<= 768px) */
+    @media (max-width: 768px) {
+      .section {
+        padding: 4rem 0;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-actions .btn--outline {
+        display: none;
+      }
+
+      .nav-menu {
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        background-color: var(--bg-cream);
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem;
+        display: none;
+      }
+
+      #nav-toggle:checked ~ .nav-menu {
+        display: flex;
+      }
+
+      .menu-grid,
+      .testimonials-grid,
+      .reserve-form,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .craft-media img:first-child {
+        transform: none;
+      }
+
+      .event-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero__cta-group .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1: HEADER & NAVIGATION -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="#" class="brand">
+        <span class="brand__badge">V</span>
+        <span>Verdant &amp; Roast</span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu" />
+      <label for="nav-toggle" class="hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-menu">
+          <li><a href="#craft">Craft</a></li>
+          <li><a href="#roasts">Roasts</a></li>
+          <li><a href="#menu">Café Menu</a></li>
+          <li><a href="#workshops">Workshops</a></li>
+          <li><a href="#reviews">Stories</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#reserve" class="btn btn--outline">Book Table</a>
+        <a href="#roasts" class="btn btn--primary">Shop Beans</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- SECTION 2: HERO SECTION -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Small-Batch Botanical Roastery</span>
+          <h1>Slow-roasted single origins in a <em>sunlit garden</em> café.</h1>
+          <p class="hero__lead">
+            We partner directly with high-altitude family farms, roast in small drum batches every Tuesday and Friday, and pair every cup with botanical infusions and flaky morning pastries.
+          </p>
+          <div class="hero__cta-group">
+            <a href="#roasts" class="btn btn--primary">Explore Signature Roasts</a>
+            <a href="#menu" class="btn btn--outline">View Café Menu</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>14+</strong>
+              <span>Direct-Trade Farms</span>
+            </div>
+            <div class="hero-stat">
+              <strong>48 hrs</strong>
+              <span>Roast-to-Shelf Window</span>
+            </div>
+            <div class="hero-stat">
+              <strong>100%</strong>
+              <span>Compostable Packaging</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card">
+            <img
+              src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80"
+              alt="Specialty pour-over coffee served beside green botanical plants"
+            />
+          </div>
+          <aside class="floating-note" aria-label="Seasonal harvest highlight">
+            <span class="floating-note__tag">Autumn Harvest</span>
+            <p>Huila Pink Bourbon — Notes of bergamot &amp; white peach</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: CRAFT & PHILOSOPHY -->
+    <section id="craft" class="section section--sand">
+      <div class="container craft-grid">
+        <div class="craft-media">
+          <img
+            src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=700&q=80"
+            alt="Barista pouring steamed milk into a ceramic cup"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=700&q=80"
+            alt="Freshly roasted specialty coffee beans close-up"
+          />
+        </div>
+
+        <div>
+          <span class="eyebrow">Our Craft &amp; Philosophy</span>
+          <h2>Honest sourcing, gentle heat, and unhurried mornings.</h2>
+          <p style="color: var(--muted);">
+            Great coffee begins long before the roaster warms up. We profile each harvest gently to preserve origin clarity, sweetness, and natural floral aromatics.
+          </p>
+
+          <div class="pillars-list">
+            <article class="pillar-item">
+              <span class="pillar-num">01</span>
+              <div>
+                <h3>Transparent Farm Partnerships</h3>
+                <p>We pay above-fair-trade premiums directly to growers practicing shade-grown agroforestry.</p>
+              </div>
+            </article>
+            <article class="pillar-item">
+              <span class="pillar-num">02</span>
+              <div>
+                <h3>Precision Light-to-Medium Roasting</h3>
+                <p>Every batch is logged by bean temperature and airflow for balanced sweetness without bitterness.</p>
+              </div>
+            </article>
+            <article class="pillar-item">
+              <span class="pillar-num">03</span>
+              <div>
+                <h3>Botanical Kitchen Pairings</h3>
+                <p>House-made cardamom syrups, wildflower honey, and sourdough bakes crafted from scratch daily.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SIGNATURE ROASTS -->
+    <section id="roasts" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Signature Roasts</span>
+          <h2>Whole bean &amp; ground selections roasted weekly.</h2>
+          <p>Available in 250g resealable bags for filter pour-over, espresso machines, or French press.</p>
+        </div>
+
+        <div class="roasts-grid">
+          <article class="roast-card">
+            <img
+              class="roast-card__img"
+              src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=700&q=80"
+              alt="Bag of whole bean specialty coffee"
+            />
+            <div class="roast-card__body">
+              <div class="roast-card__meta">
+                <span>ETHIOPIA · WASHED</span>
+                <span class="roast-card__price">$19.50</span>
+              </div>
+              <h3>Yirgacheffe Kochere</h3>
+              <p>Bright, tea-like floral cup grown at 2,050m with a crisp citrus finish.</p>
+              <div class="notes-flex">
+                <span class="note-pill">Jasmine</span>
+                <span class="note-pill">Meyer Lemon</span>
+                <span class="note-pill">Honey</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="roast-card">
+            <img
+              class="roast-card__img"
+              src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=700&q=80"
+              alt="Rich espresso extraction shot"
+            />
+            <div class="roast-card__body">
+              <div class="roast-card__meta">
+                <span>COLOMBIA · HONEY</span>
+                <span class="roast-card__price">$21.00</span>
+              </div>
+              <h3>Huila Pink Bourbon</h3>
+              <p>Silky body with stone-fruit sweetness that shines both black and with oat milk.</p>
+              <div class="notes-flex">
+                <span class="note-pill">White Peach</span>
+                <span class="note-pill">Caramel</span>
+                <span class="note-pill">Almond</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="roast-card">
+            <img
+              class="roast-card__img"
+              src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=700&q=80"
+              alt="Warm latte in a stoneware cup"
+            />
+            <div class="roast-card__body">
+              <div class="roast-card__meta">
+                <span>GUATEMALA · NATURAL</span>
+                <span class="roast-card__price">$18.00</span>
+              </div>
+              <h3>Antigua Volcanic Blend</h3>
+              <p>Our everyday house favorite built for cozy mornings, chocolate depth, and warmth.</p>
+              <div class="notes-flex">
+                <span class="note-pill">Dark Cacao</span>
+                <span class="note-pill">Roasted Hazelnut</span>
+                <span class="note-pill">Plum</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="roast-card">
+            <img
+              class="roast-card__img"
+              src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80"
+              alt="Iced botanical coffee drink with herbs"
+            />
+            <div class="roast-card__body">
+              <div class="roast-card__meta">
+                <span>PERU · SUGARCANE EA</span>
+                <span class="roast-card__price">$18.50</span>
+              </div>
+              <h3>Cajamarca Decaf</h3>
+              <p>Naturally decaffeinated using fermented sugarcane ethyl acetate with zero chemical solvents.</p>
+              <div class="notes-flex">
+                <span class="note-pill">Toffee</span>
+                <span class="note-pill">Red Apple</span>
+                <span class="note-pill">Cinnamon</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: BOTANICAL CAFE MENU -->
+    <section id="menu" class="section section--sand">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Botanical Café Menu</span>
+          <h2>Poured fresh at the bar all day.</h2>
+          <p>Pair your drink with house-made botanical infusions and warm morning bakes.</p>
+        </div>
+
+        <div class="menu-grid">
+          <div class="menu-panel">
+            <h3>Espresso &amp; Botanical Drinks</h3>
+            <ul class="menu-list">
+              <li class="menu-item">
+                <div>
+                  <div class="menu-item__title">Rosemary &amp; Honey Cortado</div>
+                  <p class="menu-item__desc">Double ristretto, wildflower honey, and lightly torched garden rosemary.</p>
+                </div>
+                <span class="menu-item__price">$5.25</span>
+              </li>
+              <li class="menu-item">
+                <div>
+                  <div class="menu-item__title">Ceremonial Uji Matcha Latte</div>
+                  <p class="menu-item__desc">First-harvest stone-milled green tea whisked to order with silky milk.</p>
+                </div>
+                <span class="menu-item__price">$5.75</span>
+              </li>
+              <li class="menu-item">
+                <div>
+                  <div class="menu-item__title">Cardamom Cold Brew Tonic</div>
+                  <p class="menu-item__desc">18-hour cold steep, crisp botanical tonic water, and crushed green cardamom.</p>
+                </div>
+                <span class="menu-item__price">$5.50</span>
+              </li>
+              <li class="menu-item">
+                <div>
+                  <div class="menu-item__title">Hand-Poured V60 Filter</div>
+                  <p class="menu-item__desc">Brewed to order from our rotating single-origin tasting flight.</p>
+                </div>
+                <span class="menu-item__price">$6.00</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="menu-panel">
+            <h3>Morning Bakes &amp; Light Plates</h3>
+            <ul class="menu-list">
+              <li class="menu-item">
+                <div>
+                  <div class="menu-item__title">Brown Butter Cardamom Morning Bun</div>
+                  <p class="menu-item__desc">Laminated sourdough pastry rolled with freshly ground cardamom sugar.</p>
+                </div>
+                <span class="menu-item__price">$4.75</span>
+              </li>
+              <li class="menu-item">
+                <div>
+                  <div class="menu-item__title">Whipped Ricotta &amp; Fig Tartine</div>
+                  <p class="menu-item__desc">Country levain toast, lemon-zest ricotta, roasted figs, and thyme.</p>
+                </div>
+                <span class="menu-item__price">$9.50</span>
+              </li>
+              <li class="menu-item">
+                <div>
+                  <div class="menu-item__title">Olive Oil Citrus Loaf</div>
+                  <p class="menu-item__desc">Tender crumb glazed with blood orange reduction and sea salt flakes.</p>
+                </div>
+                <span class="menu-item__price">$4.50</span>
+              </li>
+              <li class="menu-item">
+                <div>
+                  <div class="menu-item__title">Avocado, Dukkah &amp; Sprout Bowl</div>
+                  <p class="menu-item__desc">Smashed avocado, toasted sesame-nut dukkah, radish, and micro-greens.</p>
+                </div>
+                <span class="menu-item__price">$11.00</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: WORKSHOPS & ROASTERY CLUB -->
+    <section id="workshops" class="section section--forest">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Workshops &amp; Roastery Club</span>
+          <h2>Brew smarter at home and taste alongside our roasters.</h2>
+          <p>Join weekend sensory sessions or get monthly micro-lot releases delivered to your door.</p>
+        </div>
+
+        <div class="workshops-grid">
+          <div class="event-stack">
+            <article class="event-card">
+              <div class="event-date">
+                <span>Dec</span>
+                <strong>05</strong>
+              </div>
+              <div class="event-info">
+                <h3>Pour-Over Geometry &amp; Water Chemistry</h3>
+                <p>Saturday · 10:00 AM – 11:30 AM · Learn grind distribution, bloom ratios, and extraction balance.</p>
+              </div>
+            </article>
+
+            <article class="event-card">
+              <div class="event-date">
+                <span>Dec</span>
+                <strong>12</strong>
+              </div>
+              <div class="event-info">
+                <h3>Cupping Table: East Africa vs. South America</h3>
+                <p>Saturday · 01:00 PM – 02:30 PM · Side-by-side tasting of six seasonal harvests with tasting notes.</p>
+              </div>
+            </article>
+
+            <article class="event-card">
+              <div class="event-date">
+                <span>Dec</span>
+                <strong>19</strong>
+              </div>
+              <div class="event-info">
+                <h3>Botanical Syrups &amp; Home Espresso Workshop</h3>
+                <p>Saturday · 09:30 AM – 11:00 AM · Dial in espresso shots and craft natural seasonal infusions.</p>
+              </div>
+            </article>
+          </div>
+
+          <aside class="club-box" aria-label="Roastery Club Signup">
+            <span class="eyebrow">Monthly Dispatch</span>
+            <h3>Join the Roastery Club</h3>
+            <p>Receive one limited micro-lot bag every month plus 10% off all café workshops.</p>
+            <form class="club-form" onsubmit="event.preventDefault(); this.reset(); alert('Welcome to the Verdant & Roast Club! Check your inbox for your welcome note.');">
+              <input type="text" name="name" placeholder="Your full name" required />
+              <input type="email" name="email" placeholder="you@example.com" required />
+              <select name="grind" aria-label="Preferred grind">
+                <option value="whole">Whole Bean (Recommended)</option>
+                <option value="filter">Filter / Pour-Over Grind</option>
+                <option value="espresso">Fine Espresso Grind</option>
+              </select>
+              <button type="submit" class="btn btn--primary">Start Monthly Tasting</button>
+            </form>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: GUEST STORIES & TABLE RESERVATION -->
+    <section id="reviews" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Guest Stories</span>
+          <h2>Loved by neighborhood regulars &amp; coffee curious guests.</h2>
+        </div>
+
+        <div class="testimonials-grid">
+          <article class="quote-card">
+            <blockquote>
+              “The courtyard feels like a quiet greenhouse in the middle of the city. Their Rosemary Cortado and cardamom bun are unmatched.”
+            </blockquote>
+            <div class="quote-author">
+              <div>
+                <strong>Hannah Lin</strong>
+                <span>Architectural Designer</span>
+              </div>
+              <span>★★★★★</span>
+            </div>
+          </article>
+
+          <article class="quote-card">
+            <blockquote>
+              “Every single-origin bag comes with clear brew guidance. The Huila Pink Bourbon tasted like fresh peaches right out of the V60.”
+            </blockquote>
+            <div class="quote-author">
+              <div>
+                <strong>Devon Brooks</strong>
+                <span>Home Barista</span>
+              </div>
+              <span>★★★★★</span>
+            </div>
+          </article>
+
+          <article class="quote-card">
+            <blockquote>
+              “We attended the Saturday cupping workshop and left understanding why roast profiles change sweetness. Warm, welcoming, zero pretension.”
+            </blockquote>
+            <div class="quote-author">
+              <div>
+                <strong>Tariq Mahmood</strong>
+                <span>Product Photographer</span>
+              </div>
+              <span>★★★★★</span>
+            </div>
+          </article>
+        </div>
+
+        <div id="reserve" class="reserve-banner">
+          <div>
+            <span class="eyebrow">Reserve a Spot</span>
+            <h2>Planning a morning catch-up or study session?</h2>
+            <p style="color: var(--muted);">
+              Reserve a sunlit garden table or counter seat for up to 6 guests. Walk-ins are always welcome for coffee and pastries.
+            </p>
+          </div>
+
+          <form class="reserve-form" onsubmit="event.preventDefault(); this.reset(); alert('Your table request has been received! We look forward to hosting you.');">
+            <input type="text" name="guest_name" placeholder="Your name" required />
+            <input type="email" name="guest_email" placeholder="Email address" required />
+            <input type="date" name="visit_date" required />
+            <select name="guests" aria-label="Number of guests">
+              <option value="1">1 Guest</option>
+              <option value="2" selected>2 Guests</option>
+              <option value="4">4 Guests</option>
+              <option value="6">6 Guests (Garden Table)</option>
+            </select>
+            <button type="submit" class="btn btn--primary full-span">Request Table Reservation</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="brand footer-brand">
+            <span class="brand__badge">V</span>
+            <span>Verdant &amp; Roast</span>
+          </a>
+          <p style="font-size: 0.9rem;">
+            214 Cedarwood Lane, Garden District<br />
+            Open Daily: 7:00 AM – 6:00 PM
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#craft">Our Craft</a></li>
+            <li><a href="#roasts">Signature Roasts</a></li>
+            <li><a href="#menu">Botanical Menu</a></li>
+            <li><a href="#workshops">Workshops</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Roastery</h4>
+          <ul>
+            <li><a href="#reserve">Book a Table</a></li>
+            <li><a href="#workshops">Roastery Club</a></li>
+            <li><a href="#reviews">Guest Stories</a></li>
+            <li><a href="mailto:hello@verdantandroast.example">Wholesale Inquiries</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Journal &amp; Brew Guides</a></li>
+            <li><a href="#">Sourcing Reports</a></li>
+            <li><a href="#">Privacy &amp; Terms</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Verdant &amp; Roast Botanical Roastery. All rights reserved.</span>
+        <span>Built with semantic HTML5, Flexbox, CSS Grid &amp; Media Queries.</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
